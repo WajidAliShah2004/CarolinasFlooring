@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Footer } from '@/components/Footer';
+import { Nav } from '@/components/Nav';
 import { site } from '@/site.config';
 import './globals.css';
 
@@ -14,7 +16,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-navy"
+        >
+          Skip to content
+        </a>
+        <Nav />
         <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );
