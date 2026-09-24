@@ -24,10 +24,19 @@ export const hero = {
 };
 
 export const introVideo = {
+  number: '01',
+  label: 'Meet the owner',
   title: 'Meet David',
   lede: 'A short introduction from the owner — how he works, and why you deal with him from the first visit to the last.',
   src: '/assets/david-intro.mp4',
   poster: '/assets/video-poster.jpg',
+  duration: '~2 min', // PLACEHOLDER until the video is cut
+  // PLACEHOLDER timestamps — set once the real video exists.
+  chapters: [
+    { label: 'Who I am', seconds: 0 },
+    { label: 'How I work', seconds: 40 },
+    { label: 'Why my prices are lower', seconds: 80 },
+  ],
 };
 
 export const twoWays = {

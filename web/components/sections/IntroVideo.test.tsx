@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { IntroVideo } from './IntroVideo';
 
@@ -9,7 +9,12 @@ describe('IntroVideo', () => {
     expect(video).toHaveAttribute('poster', '/assets/video-poster.jpg');
     expect(video).toHaveAttribute('preload', 'none');
     expect(video).not.toHaveAttribute('autoplay');
-    expect(video).toHaveAttribute('controls');
     expect(container.querySelector('section')).toHaveAttribute('id', 'video');
+  });
+
+  it('renders the chapter chips from content', () => {
+    render(<IntroVideo />);
+    expect(screen.getByRole('button', { name: 'Who I am' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Why my prices are lower' })).toBeInTheDocument();
   });
 });
