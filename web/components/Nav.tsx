@@ -29,8 +29,9 @@ export function Nav() {
       )}
     >
       <Container className="flex h-14 items-center gap-4 md:h-18">
-        <Link href="/" className="mr-auto leading-tight">
-          <span className={cn('block text-lg font-bold', scrolled ? 'text-white' : 'text-navy')}>{site.businessName}</span>
+        {/* One line on md+ so the name shares a baseline with the nav links; stacked only on phones. */}
+        <Link href="/" className="mr-auto flex flex-col leading-tight md:flex-row md:items-baseline md:gap-3">
+          <span className={cn('text-lg font-bold', scrolled ? 'text-white' : 'text-navy')}>{site.businessName}</span>
           <span
             className={cn(
               'hidden text-xs font-medium uppercase tracking-[0.2em] sm:block',
