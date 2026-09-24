@@ -56,3 +56,9 @@ All new copy is placeholder and marked with `PlaceholderNote`. FAQ answers deriv
 - Slides: `rounded-xl`, soft shadow, image zooms 1.05 on hover, gradient caption overlay showing the sample name.
 - Autoplay: advances every 4 s and loops. It **pauses** on hover, focus within, touch, while off-screen, and via a visible Pause/Play button; it **never runs** when `prefers-reduced-motion` is set.
 - Tests: slides render with captions; next/prev scroll the track; the pause button toggles; autoplay advances after 4 s (fake timers) and does not under reduced motion; hover pauses.
+
+## 7. Reversion to the Concept A mockup look — 2026-09-24
+
+**Client override, to be signed off by David:** the site is restyled to match `01-warm-minimal.html` in full — bone/ink/tan palette, Fraunces serif display type, parquet hero panel, editorial service rows, calm grids. This overrides the base spec's locked white/blue/Syracuse Orange palette (§5). Structural decisions from the docx still apply: no showroom/hours/address/region band, no outbound manufacturer links, consultation options and social links retained, video directly below the hero.
+
+Removed (not in the mockup): timeline, stats grid, FAQ, both autoplay carousels, sticky mobile bar, glass header, watermark, navy gradient bands. Kept: gentle fade/rise reveals (the mockup's `.rise`), cinematic video player with chapters.
