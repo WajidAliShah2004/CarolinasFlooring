@@ -18,6 +18,17 @@ describe('Hero', () => {
     expect(links[0].className).toContain('bg-syracuse');
     expect(links[1]).toHaveTextContent('Watch My Story');
     expect(links[1]).toHaveAttribute('href', '#video');
-    expect(links[1].className).toContain('border-navy');
+    expect(links[1].className).toContain('border-white');
+  });
+
+  it('shows a data-derived trust strip', () => {
+    render(<Hero />);
+    expect(screen.getByRole('list', { name: 'Why David' })).toHaveTextContent(`${yearsOfExperience()} years in flooring`);
+  });
+
+  it('uses the staircase photo and an orange rule under the band', () => {
+    const { container } = render(<Hero />);
+    expect(screen.getByRole('img', { name: /staircase/i })).toHaveAttribute('src', '/assets/photos/refinished-stairs-0001.jpg');
+    expect(container.querySelector('section')!.className).toContain('border-syracuse');
   });
 });

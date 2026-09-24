@@ -19,7 +19,8 @@ export const hero = {
   lede: "Buy the flooring on its own, or have it installed by David's own technicians. Either way, you deal with the owner.",
   primaryCta: 'Book a Consultation',
   secondaryCta: 'Watch My Story',
-  image: { src: '/assets/photos/engineered-hardwood.jpg', alt: 'Engineered hardwood floor in an entry and stair hall' } as Img,
+  image: { src: '/assets/photos/refinished-stairs-0001.jpg', alt: 'Refinished staircase with dark stained treads and white risers' } as Img,
+  trust: (years: number) => [`${years} years in flooring`, 'Owner-led consultations', '1-year workmanship warranty'],
 };
 
 export const introVideo = {
