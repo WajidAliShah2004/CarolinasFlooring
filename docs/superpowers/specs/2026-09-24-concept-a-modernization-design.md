@@ -47,3 +47,12 @@ All new copy is placeholder and marked with `PlaceholderNote`. FAQ answers deriv
 
 - Unit: `VideoPlayer` (play reveals video; chapter click seeks + plays, mocked), `Reveal` (observer → visible; reduced motion → visible immediately), `Timeline`, `Stats`, `Faq` (details toggles), `StickyBar` (hidden when contact intersecting), `homeSections` order updated.
 - e2e (both projects): existing suite unchanged; add: sticky bar visible at top on mobile and hidden at `#contact`; the Meet David play button reveals a `<video>`.
+
+## 6. Samples carousel (S5) — added 2026-09-24
+
+**Client override, to be flagged to David:** the base spec (§6.1) forbids carousels that move on their own. The client asked for autoplay; the agreed compromise is *gentle autoplay with safeguards*.
+
+- `Carousel` client component (no library): scroll-snap track with the native scrollbar hidden, previous/next arrow buttons, dot indicators, drag/swipe.
+- Slides: `rounded-xl`, soft shadow, image zooms 1.05 on hover, gradient caption overlay showing the sample name.
+- Autoplay: advances every 4 s and loops. It **pauses** on hover, focus within, touch, while off-screen, and via a visible Pause/Play button; it **never runs** when `prefers-reduced-motion` is set.
+- Tests: slides render with captions; next/prev scroll the track; the pause button toggles; autoplay advances after 4 s (fake timers) and does not under reduced motion; hover pauses.
