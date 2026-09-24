@@ -1,24 +1,18 @@
-import Image from 'next/image';
+import { Carousel } from '@/components/blocks/Carousel';
 import { DualCta } from '@/components/blocks/DualCta';
 import { Container } from '@/components/layout/Container';
 import { SectionHeading } from '@/components/layout/SectionHeading';
 import { seeItFirst } from '@/content/copy';
 import { site } from '@/site.config';
 
-// S5. Prime real estate — full width, feature-size heading.
+// S5. Prime real estate — full width, feature-size heading, samples carousel.
 export function SeeItFirst() {
   return (
     <section id="see-it" aria-labelledby="see-it-title" className="bg-secondary py-16 md:py-28">
-      <Container>
+      <Container size="wide">
         <SectionHeading id="see-it-title" number="05" label="Samples" title={seeItFirst.title} lede={seeItFirst.lede} size="feature" />
-        <ul className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4" aria-label="Sample displays">
-          {seeItFirst.shelf.map((img) => (
-            <li key={img.src} className="relative aspect-[3/4] w-[70%] shrink-0 snap-start overflow-hidden rounded-xl bg-muted shadow-soft sm:w-56 md:w-64">
-              <Image src={img.src} alt={img.alt} fill sizes="256px" className="object-cover" />
-            </li>
-          ))}
-        </ul>
-        <DualCta className="mt-8" primary={{ label: seeItFirst.cta, href: site.bookingUrl }} />
+        <Carousel slides={seeItFirst.shelf} label="Sample displays" />
+        <DualCta className="mt-10" primary={{ label: seeItFirst.cta, href: site.bookingUrl }} />
       </Container>
     </section>
   );
