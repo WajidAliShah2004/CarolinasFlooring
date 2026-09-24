@@ -11,7 +11,7 @@ export function TwoWays() {
         <SectionHeading id="services-title" title={twoWays.title} />
         <ul className="grid gap-6 md:grid-cols-2">
           {twoWays.paths.map((path, i) => (
-            <li key={path.title} className="rounded-md border border-border p-8">
+            <li key={path.title} className="rounded-md bg-white p-8 shadow-soft">
               <p className="text-sm font-semibold text-navy">0{i + 1}</p>
               <h3 className="mt-2 text-2xl font-semibold tracking-tight text-navy">{path.title}</h3>
               <p className="mt-3 text-foreground/80">{path.body}</p>

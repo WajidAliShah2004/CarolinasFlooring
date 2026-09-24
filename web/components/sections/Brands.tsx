@@ -16,7 +16,7 @@ export function Brands({ items = brands }: { items?: Brand[] }) {
             <li key={b.slug}>
               <Link
                 href={`/brands/${b.slug}`}
-                className="flex min-h-20 items-center justify-center rounded-md border border-border px-4 text-center text-lg font-semibold text-navy transition-colors hover:border-navy"
+                className="flex min-h-20 items-center justify-center rounded-md bg-white px-4 text-center text-lg font-semibold text-navy shadow-soft transition-shadow hover:ring-2 hover:ring-navy"
               >
                 {b.name}
               </Link>
