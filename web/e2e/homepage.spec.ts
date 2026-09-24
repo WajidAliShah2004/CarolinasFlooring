@@ -79,12 +79,15 @@ test.describe('homepage', () => {
     await expect(header).toHaveClass(/bg-navy\/85/);
   });
 
-  test('Meet David play button reveals the player', async ({ page }) => {
+  test('Meet David never requests a video file while none is configured', async ({ page }) => {
+    const requests: string[] = [];
+    page.on('request', (r) => requests.push(r.url()));
     const play = page.getByRole('button', { name: /^Play video: / });
     await play.scrollIntoViewIfNeeded();
     await play.click();
-    await expect(page.locator('#video video')).toHaveAttribute('controls', '');
-    await expect(play).toHaveCount(0);
+    await page.getByRole('button', { name: 'How I work' }).click();
+    await expect(page.locator('#video video')).toHaveAttribute('poster', /video-poster/);
+    expect(requests.filter((u) => u.endsWith('.mp4'))).toEqual([]);
   });
 
   test('sticky mobile bar shows at the top and hides at the contact form', async ({ page }, testInfo) => {

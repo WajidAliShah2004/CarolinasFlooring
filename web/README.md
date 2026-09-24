@@ -35,5 +35,5 @@ Deploy: import the repo into Vercel with **Root Directory = `web`**.
 - **Social profile URLs:** Google, Facebook, Yelp, Apple — hidden until set in `site.config.ts`.
 - **Booking:** `bookingUrl` points to the contact form until the Google appointment schedule exists.
 - **Lead form:** mocked (`lib/submitLead.ts`) — nothing is sent. Wire to an `/api/lead` route next.
-- **Content:** all copy, reviews and the portrait are placeholders. Drop the intro video at `public/assets/david-intro.mp4`.
+- **Content:** all copy, reviews and the portrait are placeholders. For the intro video, drop the file at `public/assets/david-intro.mp4` **and** set `introVideo.src` in `content/copy.ts` to `'/assets/david-intro.mp4'` (it is empty until then so nothing 404s).
 - **Brand pages:** `/brands/[slug]` is a stub until the product/colour swatch grid is built.

@@ -28,7 +28,8 @@ export const introVideo = {
   label: 'Meet the owner',
   title: 'Meet David',
   lede: 'A short introduction from the owner — how he works, and why you deal with him from the first visit to the last.',
-  src: '/assets/david-intro.mp4',
+  // Set to '/assets/david-intro.mp4' once the file is in public/assets. Empty = poster only, no request.
+  src: '',
   poster: '/assets/video-poster.jpg',
   duration: '~2 min', // PLACEHOLDER until the video is cut
   // PLACEHOLDER timestamps — set once the real video exists.

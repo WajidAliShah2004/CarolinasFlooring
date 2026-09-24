@@ -7,7 +7,8 @@ import { cn } from '@/lib/utils';
 export type Chapter = { label: string; seconds: number };
 
 type Props = {
-  src: string;
+  /** Empty until the video exists — then no request is made and no 404 is logged. */
+  src?: string;
   poster: string;
   title: string;
   subtitle: string;
@@ -26,7 +27,7 @@ export function VideoPlayer({ src, poster, title, subtitle, duration, chapters =
 
   function start(seconds?: number) {
     const v = videoRef.current;
-    if (!v) return;
+    if (!v || !src) return; // no video yet: the poster stays, nothing is fetched
     setPlaying(true);
     if (seconds !== undefined) v.currentTime = seconds;
     void v.play().catch(() => {});
@@ -44,7 +45,7 @@ export function VideoPlayer({ src, poster, title, subtitle, duration, chapters =
           poster={poster}
           onPlay={() => setPlaying(true)}
         >
-          <source src={src} type="video/mp4" />
+          {src && <source src={src} type="video/mp4" />}
         </video>
 
         {!playing && (
