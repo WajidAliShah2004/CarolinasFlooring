@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
+import { intersectAll } from '@/test/intersection-observer';
 import { Nav } from './Nav';
 
 describe('Nav', () => {
@@ -22,6 +23,18 @@ describe('Nav', () => {
     fireEvent.scroll(window);
     expect(header.className).toContain('bg-navy/85');
     Object.defineProperty(window, 'scrollY', { value: 0, configurable: true });
+  });
+
+  it('marks the link for the section currently in view', () => {
+    render(
+      <>
+        <section id="gallery" />
+        <Nav />
+      </>,
+    );
+    expect(screen.queryByRole('link', { current: true })).toBeNull();
+    act(() => intersectAll(true));
+    expect(screen.getByRole('link', { current: true })).toHaveTextContent('Work');
   });
 
   it('toggles the mobile menu', async () => {
