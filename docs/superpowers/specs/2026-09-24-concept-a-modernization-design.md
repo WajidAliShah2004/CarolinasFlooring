@@ -62,3 +62,15 @@ All new copy is placeholder and marked with `PlaceholderNote`. FAQ answers deriv
 **Client override, to be signed off by David:** the site is restyled to match `01-warm-minimal.html` in full — bone/ink/tan palette, Fraunces serif display type, parquet hero panel, editorial service rows, calm grids. This overrides the base spec's locked white/blue/Syracuse Orange palette (§5). Structural decisions from the docx still apply: no showroom/hours/address/region band, no outbound manufacturer links, consultation options and social links retained, video directly below the hero.
 
 Removed (not in the mockup): timeline, stats grid, FAQ, both autoplay carousels, sticky mobile bar, glass header, watermark, navy gradient bands. Kept: gentle fade/rise reveals (the mockup's `.rise`), cinematic video player with chapters.
+
+## 8. Docx compliance pass — 2026-09-24
+
+Supersedes §7's palette override. The Concept A layout (mockup structure, Fraunces headings, parquet panel, editorial feel) is kept, and the two client docx files are applied on top:
+
+- **Palette (Design spec §5, LOCKED):** white page, blue-family structure (navy nav bar, footer, headlines; pale blue-grey bands), Syracuse Orange as highlight only — primary CTAs, highlighted headline phrase, active/hover underlines, stars, small markers. Text-safe orange (#C74A00) for any orange at body size. Navy is a placeholder until the business-card blue (C1) is extracted.
+- **Floors, Two Ways (§7.4 / K4):** two parallel, equal-weight cards — product only vs product + installation — each with its own CTA; the four floor types listed beneath.
+- **Brands (§7.7 / K8):** own section, reflowing text-tile grid, inbound links only (logos pending permission, C10).
+- **Booking entry point (S14 / K17):** persistent orange "Book a Consultation" in the nav, in the hero, in Two Ways, in See-It, and in the contact section; phone number as a plain link.
+- **Social/review profiles (S13 / K14):** 44px icon row (lettered circles until brand-mark permission), opening in a new tab, hidden until URLs are configured.
+- **Still outstanding (MUST, needs credentials):** form-to-email delivery with reply-to = visitor (§7.11). The form is validated and mocked; wiring needs an email provider key and David's inbox address.
+- Typography: Fraunces for headings is within the docx allowance ("a second family, if used at all, is for headings only"); Inter body ≥ 17px.
