@@ -20,8 +20,9 @@ export function Reveal({ children, delay = 0, className, as: Tag = 'div' }: Prop
 
   useEffect(() => {
     if (window.matchMedia(REDUCED).matches) {
-      setShown(true);
-      return;
+      // Deferred so the effect only schedules work rather than setting state synchronously.
+      const t = setTimeout(() => setShown(true), 0);
+      return () => clearTimeout(t);
     }
     const el = ref.current;
     if (!el) return;

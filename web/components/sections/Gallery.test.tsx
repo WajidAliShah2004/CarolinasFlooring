@@ -21,6 +21,13 @@ describe('Gallery', () => {
     expect(screen.getByText('Pair caption')).toBeInTheDocument();
   });
 
+  it('gives the first tile a double-width bento slot on desktop', () => {
+    const { container } = render(<Gallery items={items} />);
+    const tiles = container.querySelectorAll('ul > li');
+    expect(tiles[0].className).toContain('md:col-span-2');
+    expect(tiles[1].className).not.toContain('md:col-span-2');
+  });
+
   it('loads the video only after the play button is clicked', async () => {
     const { container } = render(<Gallery items={items} />);
     expect(container.querySelector('video')).toBeNull();

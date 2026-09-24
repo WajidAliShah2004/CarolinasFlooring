@@ -20,7 +20,7 @@ describe('Nav', () => {
     expect(header.className).toContain('bg-white');
     Object.defineProperty(window, 'scrollY', { value: 200, configurable: true });
     fireEvent.scroll(window);
-    expect(header.className).toContain('bg-navy');
+    expect(header.className).toContain('bg-navy/85');
     Object.defineProperty(window, 'scrollY', { value: 0, configurable: true });
   });
 

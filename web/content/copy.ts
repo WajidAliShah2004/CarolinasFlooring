@@ -127,7 +127,7 @@ export const stats = {
 
 // Answers derive from the specs only. PLACEHOLDER wording; service area still to be confirmed.
 export const faq = {
-  number: '08',
+  number: '09',
   label: 'Questions',
   title: 'Good to know',
   note: 'Placeholder answers — David to confirm wording and service area.',

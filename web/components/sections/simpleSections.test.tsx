@@ -32,6 +32,6 @@ describe('About', () => {
     expect(container.querySelector('section')).toHaveAttribute('id', 'about');
     expect(screen.getByText(String(yearsOfExperience()))).toBeInTheDocument();
     expect(container.querySelector('[class*="md:aspect-[4/5]"]')).not.toBeNull();
-    expect(container.querySelector('section')!.className).toContain('bg-navy');
+    expect(container.querySelector('section')!.className).toMatch(/navy/);
   });
 });

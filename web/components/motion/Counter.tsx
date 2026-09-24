@@ -11,13 +11,14 @@ export function Counter({ to, duration = 1000, className }: { to: number; durati
   const [value, setValue] = useState(0);
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
     if (window.matchMedia(REDUCED).matches) {
-      setValue(to);
-      return;
+      // Deferred so the effect only schedules work rather than setting state synchronously.
+      timer = setTimeout(() => setValue(to), 0);
+      return () => clearTimeout(timer);
     }
     const el = ref.current;
     if (!el) return;
-    let timer: ReturnType<typeof setTimeout> | undefined;
     const io = new IntersectionObserver(
       (entries) => {
         if (!entries.some((e) => e.isIntersecting)) return;

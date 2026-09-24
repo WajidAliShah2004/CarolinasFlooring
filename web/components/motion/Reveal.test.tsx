@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { intersectAll, setReducedMotion } from '@/test/intersection-observer';
 import { Reveal } from './Reveal';
@@ -13,10 +13,10 @@ describe('Reveal', () => {
     expect(wrapper).toHaveAttribute('data-revealed');
   });
 
-  it('is visible immediately under prefers-reduced-motion', () => {
+  it('is visible without waiting for intersection under prefers-reduced-motion', async () => {
     setReducedMotion(true);
     render(<Reveal><p>Hello</p></Reveal>);
-    expect(screen.getByText('Hello').parentElement!.className).toContain('opacity-100');
+    await waitFor(() => expect(screen.getByText('Hello').parentElement!.className).toContain('opacity-100'));
   });
 
   it('applies a stagger delay', () => {

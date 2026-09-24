@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { StickyBar } from '@/components/StickyBar';
@@ -19,11 +19,11 @@ describe('Timeline', () => {
 });
 
 describe('Stats', () => {
-  it('shows the derived years and three data-backed tiles', () => {
+  it('shows the derived years and three data-backed tiles', async () => {
     setReducedMotion(true);
     const { container } = render(<Stats />);
     expect(container.querySelector('section')).toHaveAttribute('id', 'stats');
-    expect(screen.getByText(String(yearsOfExperience()))).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText(String(yearsOfExperience()))).toBeInTheDocument());
     expect(screen.getByText('Owner on every job')).toBeInTheDocument();
     expect(screen.getByText('Samples to your home')).toBeInTheDocument();
     expect(screen.getByText('1-year workmanship warranty')).toBeInTheDocument();

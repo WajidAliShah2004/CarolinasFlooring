@@ -24,8 +24,8 @@ export function Nav() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 border-b transition-colors',
-        scrolled ? 'border-navy bg-navy' : 'border-border bg-white/95 backdrop-blur',
+        'sticky top-0 z-50 border-b backdrop-blur-md transition-colors duration-300',
+        scrolled ? 'border-navy bg-navy/85' : 'border-border bg-white/70',
       )}
     >
       <Container className="flex h-14 items-center gap-4 md:h-18">

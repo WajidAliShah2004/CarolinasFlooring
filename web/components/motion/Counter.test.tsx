@@ -22,6 +22,7 @@ describe('Counter', () => {
   it('shows the final value immediately under prefers-reduced-motion', () => {
     setReducedMotion(true);
     render(<Counter to={19} />);
+    act(() => { vi.advanceTimersByTime(1); });
     expect(screen.getByText('19')).toBeInTheDocument();
   });
 });

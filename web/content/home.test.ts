@@ -7,11 +7,14 @@ describe('homeSections', () => {
       'hero',
       'video',
       'two-ways',
+      'timeline',
       'gallery',
+      'stats',
       'see-it',
       'brands',
       'about',
       'reviews',
+      'faq',
       'contact',
     ]);
   });

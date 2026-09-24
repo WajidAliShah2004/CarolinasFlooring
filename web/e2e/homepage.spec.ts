@@ -73,8 +73,27 @@ test.describe('homepage', () => {
 
   test('header turns navy after scrolling', async ({ page }) => {
     const header = page.getByRole('banner');
+    await expect(header).toHaveClass(/bg-white/);
     await page.evaluate(() => window.scrollTo(0, 1200));
-    await expect(header).toHaveCSS('background-color', 'rgb(31, 58, 95)');
+    // Frosted navy (85% alpha); browsers report the computed colour in varying formats, so assert the class.
+    await expect(header).toHaveClass(/bg-navy\/85/);
+  });
+
+  test('Meet David play button reveals the player', async ({ page }) => {
+    const play = page.getByRole('button', { name: /^Play video: / });
+    await play.scrollIntoViewIfNeeded();
+    await play.click();
+    await expect(page.locator('#video video')).toHaveAttribute('controls', '');
+    await expect(play).toHaveCount(0);
+  });
+
+  test('sticky mobile bar shows at the top and hides at the contact form', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile', 'phones only');
+    const bar = page.getByRole('navigation', { name: 'Quick actions' });
+    await expect(bar).toBeVisible();
+    await expect(bar).not.toHaveClass(/translate-y-full/);
+    await page.locator('#contact').scrollIntoViewIfNeeded();
+    await expect(bar).toHaveClass(/translate-y-full/);
   });
 
   test('no horizontal scroll', async ({ page }) => {

@@ -11,7 +11,7 @@ export function Reviews({ items = reviews }: { items?: Review[] }) {
   return (
     <section id="reviews" aria-labelledby="reviews-title" className="bg-secondary py-16 md:py-24">
       <Container>
-        <SectionHeading id="reviews-title" title={reviewsCopy.title} />
+        <SectionHeading id="reviews-title" number="08" label="Reviews" title={reviewsCopy.title} />
         <ul className="grid gap-4 md:grid-cols-3">
           {items.map((r) => (
             <li key={r.id}><ReviewCard review={r} /></li>
