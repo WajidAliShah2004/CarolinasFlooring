@@ -99,3 +99,7 @@
     }
   }
 }
+
+@utility shadow-soft {
+  box-shadow: 0 1px 3px rgb(21 42 70 / 0.08), 0 10px 28px -14px rgb(21 42 70 / 0.22);
+}
