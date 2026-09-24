@@ -35,7 +35,7 @@ export function Hero() {
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/75">
             <span className="text-syracuse">01</span> · {hero.eyebrow}
           </p>
-          <h1 className="mt-4 text-[2.125rem] font-semibold leading-[1.05] tracking-tight md:text-7xl">
+          <h1 className="mt-4 text-balance text-[2.125rem] font-semibold leading-[1.05] tracking-tight md:text-7xl">
             {h.before}
             <span className="text-syracuse">{h.highlight}</span>
             {h.after}
