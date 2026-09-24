@@ -102,6 +102,55 @@ export const contactCopy = {
   error: 'Something went wrong sending your message. Please try again, or call David directly.',
 };
 
+// PLACEHOLDER — David to confirm the steps and wording.
+export const timeline = {
+  number: '03',
+  label: 'How it works',
+  title: 'Three steps to a new floor',
+  note: 'Placeholder steps — David to confirm.',
+  steps: [
+    { title: 'Measure & consult', body: 'David visits, measures the rooms and talks through what suits the space and the traffic it takes.' },
+    { title: 'Choose with samples', body: 'Full-size samples in your own light, or a meeting by appointment if you want to see the full range.' },
+    { title: 'Installed by his technicians', body: "David's own crew installs; David follows up during and after the job." },
+  ],
+};
+
+// Data-backed only — no invented numbers.
+export const stats = {
+  yearsLabel: 'years in flooring',
+  items: [
+    { title: 'Owner on every job', body: 'Consultation, selection and follow-up all go through David.' },
+    { title: 'Samples to your home', body: 'See the real product where it will live.' },
+    { title: '1-year workmanship warranty', body: 'On top of the manufacturer warranties on every product.' },
+  ],
+};
+
+// Answers derive from the specs only. PLACEHOLDER wording; service area still to be confirmed.
+export const faq = {
+  number: '08',
+  label: 'Questions',
+  title: 'Good to know',
+  note: 'Placeholder answers — David to confirm wording and service area.',
+  items: [
+    {
+      q: 'Where can I see the flooring?',
+      a: 'Two ways: David brings full-size samples to your home, or you book a time and he arranges a meeting to see the full range. There is no walk-in store, which keeps prices down.',
+    },
+    {
+      q: 'Can I buy just the flooring?',
+      a: "Yes. Buy the product on its own, or have David's own technicians install it. Two paths, two price points.",
+    },
+    {
+      q: 'What warranty do I get?',
+      a: 'Every product carries its manufacturer warranty, plus a one-year workmanship warranty on installation.',
+    },
+    {
+      q: 'Where do you work?',
+      a: 'Across the region around Rock Hill and north of it. Exact service area to be confirmed — ask David when you get in touch.',
+    },
+  ],
+};
+
 export const consultOptions = [
   { title: 'Samples at your home', body: 'David brings samples to you, so you see them in your own light.' },
   { title: 'Meet by appointment', body: 'Want to see the full range? Book a time and David will arrange where to meet.' },

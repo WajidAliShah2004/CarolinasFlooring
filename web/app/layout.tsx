@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Footer } from '@/components/Footer';
 import { Nav } from '@/components/Nav';
+import { StickyBar } from '@/components/StickyBar';
 import { site } from '@/site.config';
 import './globals.css';
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        <StickyBar />
       </body>
     </html>
   );

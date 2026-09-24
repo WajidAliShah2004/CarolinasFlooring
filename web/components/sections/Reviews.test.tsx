@@ -9,7 +9,8 @@ describe('Reviews', () => {
     );
     expect(container.querySelector('section')).toHaveAttribute('id', 'reviews');
     expect(screen.getByText('Great job.')).toBeInTheDocument();
-    expect(screen.getByText('Holly · Yelp')).toBeInTheDocument();
+    expect(screen.getByText('Holly')).toBeInTheDocument();
+    expect(screen.getByText('Yelp')).toBeInTheDocument();
   });
 
   it('never auto-rotates (no timers or carousel roles)', () => {
