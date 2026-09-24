@@ -5,33 +5,42 @@ import { About } from './About';
 import { SeeItFirst } from './SeeItFirst';
 import { TwoWays } from './TwoWays';
 
-describe('TwoWays', () => {
-  it('shows exactly two parallel paths', () => {
+describe('TwoWays (mockup "Four floors, sold two ways")', () => {
+  it('shows four numbered editorial rows', () => {
     const { container } = render(<TwoWays />);
     expect(container.querySelector('section')).toHaveAttribute('id', 'services');
     const list = screen.getByRole('list');
-    expect(within(list).getAllByRole('listitem')).toHaveLength(2);
-    expect(screen.getByRole('heading', { name: 'Just the product' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Product + installation' })).toBeInTheDocument();
+    expect(within(list).getAllByRole('listitem')).toHaveLength(4);
+    for (const name of ['Carpet', 'Hardwood', 'Luxury vinyl plank', 'Tile']) {
+      expect(screen.getByRole('heading', { name })).toBeInTheDocument();
+    }
+    expect(screen.getByText('01')).toBeInTheDocument();
+  });
+
+  it('names brands as text only, never as outbound links', () => {
+    render(<TwoWays />);
+    expect(screen.getByText('Shaw · Mohawk · DreamWeaver')).toBeInTheDocument();
+    expect(screen.queryAllByRole('link')).toHaveLength(0);
   });
 });
 
 describe('SeeItFirst', () => {
-  it('is a full feature block with the sample shelf and a single primary CTA', () => {
+  it('shows the sample shelf, the on-display brand list and a single primary CTA', () => {
     const { container } = render(<SeeItFirst />);
     expect(container.querySelector('section')).toHaveAttribute('id', 'see-it');
     expect(screen.getAllByRole('img').length).toBeGreaterThanOrEqual(9);
-    const cta = screen.getByRole('link', { name: 'Book a Consultation' });
-    expect(cta.className).toContain('bg-syracuse');
+    const brandLinks = screen.getAllByRole('link').filter((a) => a.getAttribute('href')?.startsWith('/brands/'));
+    expect(brandLinks.length).toBeGreaterThanOrEqual(7);
+    expect(screen.getByRole('link', { name: 'Book a consultation' }).className).toContain('bg-ink');
   });
 });
 
 describe('About', () => {
-  it('shows the derived years and a 4:5 portrait slot', () => {
+  it('shows the derived years and a 4:5 portrait slot on a paper band', () => {
     const { container } = render(<About />);
     expect(container.querySelector('section')).toHaveAttribute('id', 'about');
-    expect(screen.getByText(String(yearsOfExperience()))).toBeInTheDocument();
+    expect(screen.getByText(`${yearsOfExperience()}+`)).toBeInTheDocument();
     expect(container.querySelector('[class*="md:aspect-[4/5]"]')).not.toBeNull();
-    expect(container.querySelector('section')!.className).toMatch(/navy/);
+    expect(container.querySelector('section')!.className).toContain('bg-paper');
   });
 });

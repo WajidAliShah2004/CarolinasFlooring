@@ -4,10 +4,12 @@ import { describe, expect, it } from 'vitest';
 import { intersectAll } from '@/test/intersection-observer';
 import { Nav } from './Nav';
 
-describe('Nav', () => {
-  it('always shows the booking CTA', () => {
+describe('Nav (Concept A mockup header)', () => {
+  it('shows the phone pill and a booking link in the mobile menu', async () => {
     render(<Nav />);
-    expect(screen.getByRole('link', { name: /book/i })).toHaveAttribute('href', '/#contact');
+    expect(screen.getByRole('link', { name: 'Call 704-614-1200' })).toHaveAttribute('href', 'tel:+17046141200');
+    await userEvent.click(screen.getByRole('button', { name: 'Menu' }));
+    expect(screen.getByRole('link', { name: /book a consultation/i })).toHaveAttribute('href', '/#contact');
   });
 
   it('has no showroom link', () => {
@@ -15,13 +17,13 @@ describe('Nav', () => {
     expect(screen.queryByRole('link', { name: /showroom/i })).toBeNull();
   });
 
-  it('turns navy after scrolling past 80px', () => {
-    render(<Nav />);
-    const header = screen.getByRole('banner');
-    expect(header.className).toContain('bg-white');
+  it('shrinks after scrolling past 40px', () => {
+    const { container } = render(<Nav />);
+    const bar = container.querySelector('header > div')!;
+    expect(bar.className).toContain('h-[78px]');
     Object.defineProperty(window, 'scrollY', { value: 200, configurable: true });
     fireEvent.scroll(window);
-    expect(header.className).toContain('bg-navy/85');
+    expect(bar.className).toContain('h-16');
     Object.defineProperty(window, 'scrollY', { value: 0, configurable: true });
   });
 

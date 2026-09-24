@@ -1,9 +1,10 @@
-// Orange CTA: white text at 19px bold so the pair meets WCAG large-text contrast (spec §5.4).
+// Concept A mockup buttons: solid ink pill and a paper ghost pill (spec §7).
 export const ctaPrimary =
-  'inline-flex min-h-12 items-center justify-center rounded-full bg-syracuse px-7 text-[1.1875rem] font-bold text-white transition-colors hover:bg-syracuse-ink disabled:opacity-60';
-
-export const ctaSecondaryDark =
-  'inline-flex min-h-12 items-center justify-center rounded-full border-2 border-white px-7 text-[1.1875rem] font-semibold text-white transition-colors hover:bg-white hover:text-navy';
+  'inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-7 text-[15px] font-medium text-bone transition-colors hover:bg-tan-deep disabled:opacity-60';
 
 export const ctaSecondary =
-  'inline-flex min-h-12 items-center justify-center rounded-full border-2 border-navy px-7 text-[1.1875rem] font-semibold text-navy transition-colors hover:bg-navy hover:text-white';
+  'inline-flex min-h-12 items-center justify-center rounded-full border border-line bg-paper px-7 text-[15px] font-medium text-ink transition-colors hover:border-ink';
+
+// Same pair for dark surfaces (video frame captions etc.).
+export const ctaSecondaryDark =
+  'inline-flex min-h-12 items-center justify-center rounded-full border border-bone/60 px-7 text-[15px] font-medium text-bone transition-colors hover:bg-bone hover:text-ink';

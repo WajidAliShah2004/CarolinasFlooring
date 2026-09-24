@@ -6,33 +6,27 @@ type Props = {
   lede?: string;
   tone?: 'light' | 'dark';
   size?: 'default' | 'feature';
-  /** Numbered label, e.g. number="02" label="Services" → "02 · Services". */
+  /** Kept for API compatibility; the mockup's headings carry no numbers, so these render nothing. */
   number?: string;
   label?: string;
 };
 
-export function SectionHeading({ id, title, lede, tone = 'light', size = 'default', number, label }: Props) {
+// Mockup `.shead`: serif h2 on the left, short sans note on the right, baseline-aligned.
+export function SectionHeading({ id, title, lede, tone = 'light', size = 'default' }: Props) {
   const dark = tone === 'dark';
   return (
-    <div className="mb-10 max-w-2xl md:mb-14">
-      <span aria-hidden className="mb-4 block h-1 w-10 rounded-full bg-syracuse" />
-      {number && (
-        <p className={cn('mb-3 text-xs font-semibold uppercase tracking-[0.22em]', dark ? 'text-white/70' : 'text-muted-foreground')}>
-          {number}
-          {label && <> · {label}</>}
-        </p>
-      )}
+    <div className="mb-10 flex flex-wrap items-baseline gap-5 md:mb-13">
       <h2
         id={id}
         className={cn(
-          'font-semibold tracking-tight',
-          size === 'feature' ? 'text-4xl md:text-6xl' : 'text-3xl md:text-5xl',
-          dark ? 'text-white' : 'text-navy',
+          'font-display font-semibold leading-[1.12] tracking-[-0.024em]',
+          size === 'feature' ? 'text-[clamp(30px,3.8vw,46px)]' : 'text-[clamp(27px,3.4vw,42px)]',
+          dark ? 'text-bone' : 'text-ink',
         )}
       >
         {title}
       </h2>
-      {lede && <p className={cn('mt-3 text-lg', dark ? 'text-white/85' : 'text-foreground/80')}>{lede}</p>}
+      {lede && <p className={cn('max-w-[34ch] text-[15px] md:ml-auto', dark ? 'text-bone/75' : 'text-stone')}>{lede}</p>}
     </div>
   );
 }

@@ -19,7 +19,7 @@ test.describe('homepage', () => {
     const vh = page.viewportSize()!.height;
     const hero = page.locator('#top');
     await expect(hero.getByRole('heading', { level: 1 })).toBeVisible();
-    for (const name of ['Book a Consultation', 'Watch My Story']) {
+    for (const name of ['Book a consultation', "Watch David's story"]) {
       const box = await hero.getByRole('link', { name }).boundingBox();
       expect(box, name).not.toBeNull();
       expect(box!.y + box!.height, name).toBeLessThanOrEqual(vh);
@@ -71,12 +71,11 @@ test.describe('homepage', () => {
     await expect(page.getByRole('heading', { level: 1, name: 'Shaw' })).toBeVisible();
   });
 
-  test('header turns navy after scrolling', async ({ page }) => {
-    const header = page.getByRole('banner');
-    await expect(header).toHaveClass(/bg-white/);
+  test('header shrinks after scrolling', async ({ page }) => {
+    const bar = page.locator('header > div').first();
+    await expect(bar).toHaveClass(/h-\[78px\]/);
     await page.evaluate(() => window.scrollTo(0, 1200));
-    // Frosted navy (85% alpha); browsers report the computed colour in varying formats, so assert the class.
-    await expect(header).toHaveClass(/bg-navy\/85/);
+    await expect(bar).toHaveClass(/h-16/);
   });
 
   test('Meet David never requests a video file while none is configured', async ({ page }) => {
@@ -88,15 +87,6 @@ test.describe('homepage', () => {
     await page.getByRole('button', { name: 'How I work' }).click();
     await expect(page.locator('#video video')).toHaveAttribute('poster', /video-poster/);
     expect(requests.filter((u) => u.endsWith('.mp4'))).toEqual([]);
-  });
-
-  test('sticky mobile bar shows at the top and hides at the contact form', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'mobile', 'phones only');
-    const bar = page.getByRole('navigation', { name: 'Quick actions' });
-    await expect(bar).toBeVisible();
-    await expect(bar).not.toHaveClass(/translate-y-full/);
-    await page.locator('#contact').scrollIntoViewIfNeeded();
-    await expect(bar).toHaveClass(/translate-y-full/);
   });
 
   test('no horizontal scroll', async ({ page }) => {

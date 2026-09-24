@@ -5,7 +5,7 @@ import { useState } from 'react';
 import type { Img } from '@/content/types';
 
 const SIZES = '(min-width: 768px) 33vw, 50vw';
-const tag = 'absolute top-2 rounded bg-navy/85 px-2 py-0.5 text-xs font-semibold text-white';
+const tag = 'absolute top-2 rounded bg-ink/85 px-2 py-0.5 text-xs font-semibold text-bone';
 
 /** K6 — drag or arrow-key to compare. Degrades to one image if a side is missing. */
 export function BeforeAfter({ before, after, caption }: { before: Img | null; after: Img | null; caption: string }) {
@@ -37,10 +37,10 @@ export function BeforeAfter({ before, after, caption }: { before: Img | null; af
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-white shadow peer-focus-visible:w-1.5 peer-focus-visible:bg-syracuse"
+        className="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-white shadow peer-focus-visible:w-1.5 peer-focus-visible:bg-tan"
         style={{ left: `${pos}%` }}
       >
-        <span className="absolute top-1/2 left-1/2 h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-navy/80" />
+        <span className="absolute top-1/2 left-1/2 h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-ink/80" />
       </div>
     </div>
   );

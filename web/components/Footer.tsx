@@ -1,23 +1,27 @@
+import Image from 'next/image';
 import { mailtoHref, telHref } from '@/lib/contact';
 import { site } from '@/site.config';
 import { SocialRow } from './blocks/SocialRow';
 import { Container } from './layout/Container';
 
-// No address, no manufacturer links (spec K18).
+// Concept A mockup footer: ink band, existing logo, tagline, contact on the right. No address (spec K18).
 export function Footer() {
   return (
-    <footer className="bg-navy text-white">
-      <Container className="grid gap-8 py-12 md:grid-cols-[1fr_auto] md:items-center">
+    <footer className="bg-ink py-12 text-[14px] text-[#B9B0A5] md:py-16">
+      <Container className="grid items-center gap-9 md:grid-cols-[auto_1fr_auto]">
+        <Image src="/assets/logo.jpg" alt={`${site.businessName} logo`} width={132} height={92} className="rounded-[3px] bg-white p-2" />
         <div>
-          <p className="text-xl font-bold">{site.businessName}</p>
-          <p className="mt-2 text-white/85">
-            <a href={telHref(site.phone)} className="hover:underline">{site.phone}</a>
-            {' · '}
-            <a href={mailtoHref(site.email)} className="hover:underline">{site.email}</a>
-          </p>
-          <p className="mt-4 text-sm text-white/70">© {new Date().getFullYear()} {site.legalName}</p>
+          <p className="font-display text-[19px] font-semibold text-bone">{site.businessName}</p>
+          <p className="mt-1.5">Great selection · Fair prices · Outstanding service</p>
+          <div className="mt-4"><SocialRow links={site.social} tone="dark" /></div>
         </div>
-        <SocialRow links={site.social} tone="dark" />
+        <div className="md:text-right">
+          <a href={telHref(site.phone)} className="hover:text-bone">{site.phone}</a>
+          <br />
+          <a href={mailtoHref(site.email)} className="hover:text-bone">{site.email}</a>
+          <br />
+          <span className="opacity-60">© {new Date().getFullYear()} {site.legalName}</span>
+        </div>
       </Container>
     </footer>
   );

@@ -22,12 +22,13 @@ describe('Gallery', () => {
     expect(screen.getByText('Pair caption')).toBeInTheDocument();
   });
 
-  it('presents the work as a carousel with arrows, dots and autoplay controls', () => {
-    render(<Gallery items={items} />);
-    expect(screen.getByRole('region', { name: 'Project photos and videos' })).toHaveAttribute('aria-roledescription', 'carousel');
-    expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
-    expect(screen.getAllByRole('tab')).toHaveLength(3);
-    expect(screen.getByRole('button', { name: 'Pause autoplay' })).toBeInTheDocument();
+  it('lays tiles out in the mockup staggered grid (6/6 then 4/4/4)', () => {
+    const { container } = render(<Gallery items={items} />);
+    const tiles = container.querySelectorAll('ul > li');
+    expect(tiles[0].className).toContain('sm:col-span-6');
+    expect(tiles[0].className).not.toContain('md:col-span-4');
+    expect(tiles[2].className).toContain('md:col-span-4');
+    expect(container.querySelector('[aria-roledescription="carousel"]')).toBeNull();
   });
 
   it('loads the video only after the play button is clicked', async () => {

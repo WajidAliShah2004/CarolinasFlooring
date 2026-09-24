@@ -17,8 +17,8 @@ type Props = {
 };
 
 /**
- * K3 — cinematic player. Never autoplays; the poster is always present.
- * Chapter chips seek and play. With no video file yet, play() rejects silently and the poster stays.
+ * K3 — video player in the mockup's frame (dark ink surface, 5px radius, deep shadow). Never autoplays.
+ * Chapter chips seek and play. With no video file yet, nothing is fetched and the poster stays.
  */
 export function VideoPlayer({ src, poster, title, subtitle, duration, chapters = [] }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -35,7 +35,7 @@ export function VideoPlayer({ src, poster, title, subtitle, duration, chapters =
 
   return (
     <div>
-      <div className="relative aspect-video overflow-hidden rounded-xl bg-navy-deep shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] ring-1 ring-white/10">
+      <div className="relative aspect-video overflow-hidden rounded-[5px] bg-[#26211D] shadow-soft">
         <video
           ref={videoRef}
           className="h-full w-full object-cover"
@@ -50,34 +50,25 @@ export function VideoPlayer({ src, poster, title, subtitle, duration, chapters =
 
         {!playing && (
           <>
-            <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-navy-deep/20 to-transparent" />
-            <button
-              type="button"
-              onClick={() => start()}
-              aria-label={`Play video: ${title}`}
-              className="group absolute inset-0 flex items-center justify-center"
-            >
-              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-syracuse text-white shadow-xl transition-transform group-hover:scale-105">
-                <Play aria-hidden className="ml-1 h-9 w-9 fill-current" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/15 to-transparent" />
+            <button type="button" onClick={() => start()} aria-label={`Play video: ${title}`} className="group absolute inset-0 flex items-center justify-center">
+              <span className="flex h-[72px] w-[72px] items-center justify-center rounded-full border border-bone/80 bg-bone/10 text-bone backdrop-blur transition-colors group-hover:bg-bone group-hover:text-ink">
+                <Play aria-hidden className="ml-1 h-8 w-8 fill-current" />
               </span>
             </button>
-            <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 sm:bottom-6 sm:left-6 sm:right-6">
-              <div className="rounded-lg border border-white/15 bg-white/10 px-4 py-3 text-white backdrop-blur-md">
-                <p className="text-lg font-semibold leading-tight">{title}</p>
-                <p className="text-sm text-white/80">{subtitle}</p>
+            <div className="pointer-events-none absolute right-4 bottom-4 left-4 flex items-end justify-between gap-4 sm:right-6 sm:bottom-6 sm:left-6">
+              <div className="text-bone">
+                <p className="font-display text-[19px] font-semibold leading-tight">{title}</p>
+                <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-bone/75">{subtitle}</p>
               </div>
-              {duration && (
-                <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
-                  {duration}
-                </span>
-              )}
+              {duration && <span className="rounded-full border border-bone/40 px-3 py-1 text-[11px] font-semibold text-bone/90">{duration}</span>}
             </div>
           </>
         )}
       </div>
 
       {chapters.length > 0 && (
-        <ul className="mt-5 flex flex-wrap gap-2" aria-label="Video chapters">
+        <ul className="mt-4 flex flex-wrap gap-2" aria-label="Video chapters">
           {chapters.map((c, i) => (
             <li key={c.label}>
               <button
@@ -87,10 +78,8 @@ export function VideoPlayer({ src, poster, title, subtitle, duration, chapters =
                   start(c.seconds);
                 }}
                 className={cn(
-                  'rounded-full border px-4 py-2 text-sm font-medium transition-colors',
-                  active === i
-                    ? 'border-white bg-white text-navy'
-                    : 'border-white/30 text-white/85 hover:border-white hover:text-white',
+                  'rounded-full border px-4 py-1.5 text-[13px] font-medium transition-colors',
+                  active === i ? 'border-ink bg-ink text-bone' : 'border-line text-stone hover:border-ink hover:text-ink',
                 )}
               >
                 {c.label}

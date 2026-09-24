@@ -1,33 +1,34 @@
-// PLACEHOLDER COPY — every word here is replaced by David's copy (spec CH4).
+// Copy follows the Concept A mockup (01-warm-minimal.html). PLACEHOLDER — David replaces every word (docx CH4).
 import type { Img } from './types';
 
 export const navLinks = [
-  { label: 'Work', href: '/#gallery' },
+  { label: 'Meet David', href: '/#video' },
   { label: 'Services', href: '/#services' },
+  { label: 'Work', href: '/#gallery' },
   { label: 'About', href: '/#about' },
-  { label: 'Reviews', href: '/#reviews' },
   { label: 'Contact', href: '/#contact' },
 ];
 
 export const hero = {
-  eyebrow: 'Carpet · Hardwood · Luxury vinyl · Tile',
+  eyebrow: (startYear: number) => `Serving the Carolinas · Since ${startYear}`,
   headline: (years: number) => ({
     before: `${years} years of floors, and `,
     highlight: 'one person',
     after: ' answering for every one.',
   }),
-  lede: "Buy the flooring on its own, or have it installed by David's own technicians. Either way, you deal with the owner.",
-  primaryCta: 'Book a Consultation',
-  secondaryCta: 'Watch My Story',
-  image: { src: '/assets/photos/refinished-stairs-0001.jpg', alt: 'Refinished staircase with dark stained treads and white risers' } as Img,
+  lede: 'Carpet, hardwood, and luxury vinyl plank — selected with the owner, installed by his own technicians. Nothing gets handed to a call centre.',
+  primaryCta: 'Book a consultation',
+  secondaryCta: "Watch David's story",
+  panelTag: 'Herringbone · hardwood',
   trust: (years: number) => [`${years} years in flooring`, 'Owner-led consultations', '1-year workmanship warranty'],
+  image: { src: '/assets/photos/refinished-stairs-0001.jpg', alt: 'Refinished staircase with dark stained treads and white risers' } as Img,
 };
 
 export const introVideo = {
-  number: '01',
-  label: 'Meet the owner',
   title: 'Meet David',
-  lede: 'A short introduction from the owner — how he works, and why you deal with him from the first visit to the last.',
+  lede: 'Two minutes with the owner — how he sells flooring, and why he still does the consultation himself.',
+  quote: (years: number) =>
+    `"I'm originally from Syracuse. I've been consulting on flooring solutions for over ${years} years — and there's a reason I get nothing but 5-star reviews."`,
   // Set to '/assets/david-intro.mp4' once the file is in public/assets. Empty = poster only, no request.
   src: '',
   poster: '/assets/video-poster.jpg',
@@ -40,36 +41,41 @@ export const introVideo = {
   ],
 };
 
-export const twoWays = {
-  title: 'Floors, two ways',
-  note: 'Placeholder copy — David is writing this section.',
-  paths: [
-    {
-      title: 'Just the product',
-      body: 'Choose your flooring with David and buy it on its own. Ideal if you already have an installer.',
-    },
-    {
-      title: 'Product + installation',
-      body: 'David supplies the floor and his own technicians install it — one person answerable from start to finish.',
-    },
-  ],
+// Mockup "Four floors, sold two ways" — editorial rows. Brand names are text only (no outbound links, docx D9).
+export const services = {
+  title: 'Four floors, sold two ways',
+  lede: "Buy the product on its own, or have David's technicians install it.",
+  rows: [
+    { title: 'Carpet', body: 'Plush through to hard-wearing loop, matched to the room and the traffic it actually takes.', brands: 'Shaw · Mohawk · DreamWeaver', swatch: 'carpet' },
+    { title: 'Hardwood', body: 'Solid and engineered, in straight-lay, herringbone or chevron. The subfloor is assessed before anything is quoted.', brands: 'Shaw · Somerset', swatch: 'wood' },
+    { title: 'Luxury vinyl plank', body: 'Waterproof, quiet underfoot, and the workhorse for kitchens, basements and busy households.', brands: 'COREtec · Shaw Floorté', swatch: 'lvp' },
+    { title: 'Tile', body: 'Porcelain, ceramic and stone-look, for bathrooms, entryways and floors that take a beating.', brands: 'Chesapeake', swatch: 'tile' },
+  ] as { title: string; body: string; brands: string; swatch: 'carpet' | 'wood' | 'lvp' | 'tile' }[],
+  note: 'Placeholder copy — David is rewriting this section.',
+};
+
+export const gallery = {
+  title: 'Recent work',
+  lede: 'Thousands of square feet across homes and businesses in the region.',
 };
 
 export const seeItFirst = {
   title: 'See it before you buy it',
-  lede: 'Handle full-size samples of the real product — brought to your home, or at a meeting by appointment.',
-  cta: 'Book a Consultation',
+  lede: 'Full-size displays, so you handle the actual product rather than a postage stamp — brought to your home, or at a meeting by appointment.',
+  onDisplay: 'On display',
+  cta: 'Book a consultation',
   shelf: [
-    { src: '/assets/photos/shaw-hardwood-0001.jpg', alt: 'Shaw hardwood samples' },
-    { src: '/assets/photos/shaw-carpet.jpg', alt: 'Shaw carpet samples' },
-    { src: '/assets/photos/mohawk-carpet-image-0001.jpg', alt: 'Mohawk carpet samples' },
-    { src: '/assets/photos/coretec-display-0001.jpg', alt: 'COREtec luxury vinyl samples' },
-    { src: '/assets/photos/dreamweaver-carpet-0001.jpg', alt: 'DreamWeaver carpet samples' },
-    { src: '/assets/photos/floorte.jpg', alt: 'Shaw Floorté vinyl samples' },
-    { src: '/assets/photos/somerset-hardwood-0001.jpg', alt: 'Hardwood sample boards' },
-    { src: '/assets/photos/hardwood-photo-for-web-site-1.jpg', alt: 'Hardwood sample boards' },
-    { src: '/assets/photos/tile-display-0001.jpg', alt: 'Chesapeake tile samples' },
+    { src: '/assets/photos/shaw-hardwood-0001.jpg', alt: 'Shaw · Floorté hardwood' },
+    { src: '/assets/photos/shaw-carpet.jpg', alt: 'Shaw carpet' },
+    { src: '/assets/photos/mohawk-carpet-image-0001.jpg', alt: 'Mohawk carpet' },
+    { src: '/assets/photos/coretec-display-0001.jpg', alt: 'COREtec luxury vinyl' },
+    { src: '/assets/photos/dreamweaver-carpet-0001.jpg', alt: 'DreamWeaver carpet' },
+    { src: '/assets/photos/floorte.jpg', alt: 'Shaw Floorté vinyl' },
+    { src: '/assets/photos/somerset-hardwood-0001.jpg', alt: 'Hardwood sample aisle' },
+    { src: '/assets/photos/hardwood-photo-for-web-site-1.jpg', alt: 'Hardwood displays' },
+    { src: '/assets/photos/tile-display-0001.jpg', alt: 'Chesapeake tile' },
   ] as Img[],
+  note: 'Brand list to be confirmed by David (docx O9).',
 };
 
 export const brandsCopy = {
@@ -79,77 +85,33 @@ export const brandsCopy = {
 
 export const about = {
   title: 'About David',
-  quote: '"There is a reason I get nothing but 5-star reviews."',
-  body: [
-    'David A. Gwilt has worked in flooring since 2007, after moving down from Syracuse, New York.',
-    'Consultation, selection and follow-up all go through him; his technicians handle the install.',
+  quote: '"I\'m the best at what I do, and there is a reason I get nothing but 5-star reviews."',
+  body: (startYear: number) => [
+    `David A. Gwilt has worked in flooring since ${startYear}, after moving down from Syracuse, in upstate New York. Since then he and his technicians have installed thousands of square feet of flooring in homes and businesses throughout the region.`,
+    "The business runs on three things he'll tell you himself: fair pricing, service that doesn't stop at the sale, and follow-up during and after the job.",
   ],
   note: 'Placeholder bio. Portrait to be replaced — supply a 4:5 photo, at least 1600 × 2000 px.',
   portrait: { src: '/assets/david.jpg', alt: 'David A. Gwilt, owner' } as Img,
 };
 
 export const reviewsCopy = {
-  title: 'What customers say',
-  note: 'Placeholder reviews — to be replaced with real quotes from each profile.',
+  title: 'Why people call back',
+  note: 'Placeholder reviews — to be replaced with real quotes from each profile. Review counts to confirm.',
+  trust: [
+    { title: 'Five stars, three platforms', body: 'Google, Facebook and Yelp.' },
+    { title: 'Warranty in writing', body: 'Manufacturer warranties on every product, plus a one-year workmanship warranty. Longer cover is available — pricing depends on the product and the setting.' },
+    { title: 'The owner picks up', body: 'Consultation, selection and follow-up all go through David. The technicians handle the install.' },
+  ],
 };
 
 export const contactCopy = {
-  title: 'Start the conversation',
-  lede: "Tell David what you have in mind and he'll get back to you.",
+  title: 'Start with a conversation',
+  lede: "Tell David the rooms and the rough square footage — he'll take it from there.",
   savings: 'No brick-and-mortar overhead means lower prices — the savings go straight to you.',
   submit: 'Send to David',
   sending: 'Sending…',
   success: 'Thanks — David will be in touch shortly.',
   error: 'Something went wrong sending your message. Please try again, or call David directly.',
-};
-
-// PLACEHOLDER — David to confirm the steps and wording.
-export const timeline = {
-  number: '03',
-  label: 'How it works',
-  title: 'Three steps to a new floor',
-  note: 'Placeholder steps — David to confirm.',
-  steps: [
-    { title: 'Measure & consult', body: 'David visits, measures the rooms and talks through what suits the space and the traffic it takes.' },
-    { title: 'Choose with samples', body: 'Full-size samples in your own light, or a meeting by appointment if you want to see the full range.' },
-    { title: 'Installed by his technicians', body: "David's own crew installs; David follows up during and after the job." },
-  ],
-};
-
-// Data-backed only — no invented numbers.
-export const stats = {
-  yearsLabel: 'years in flooring',
-  items: [
-    { title: 'Owner on every job', body: 'Consultation, selection and follow-up all go through David.' },
-    { title: 'Samples to your home', body: 'See the real product where it will live.' },
-    { title: '1-year workmanship warranty', body: 'On top of the manufacturer warranties on every product.' },
-  ],
-};
-
-// Answers derive from the specs only. PLACEHOLDER wording; service area still to be confirmed.
-export const faq = {
-  number: '09',
-  label: 'Questions',
-  title: 'Good to know',
-  note: 'Placeholder answers — David to confirm wording and service area.',
-  items: [
-    {
-      q: 'Where can I see the flooring?',
-      a: 'Two ways: David brings full-size samples to your home, or you book a time and he arranges a meeting to see the full range. There is no walk-in store, which keeps prices down.',
-    },
-    {
-      q: 'Can I buy just the flooring?',
-      a: "Yes. Buy the product on its own, or have David's own technicians install it. Two paths, two price points.",
-    },
-    {
-      q: 'What warranty do I get?',
-      a: 'Every product carries its manufacturer warranty, plus a one-year workmanship warranty on installation.',
-    },
-    {
-      q: 'Where do you work?',
-      a: 'Across the region around Rock Hill and north of it. Exact service area to be confirmed — ask David when you get in touch.',
-    },
-  ],
 };
 
 export const consultOptions = [

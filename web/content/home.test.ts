@@ -2,19 +2,15 @@ import { describe, expect, it } from 'vitest';
 import { homeSections } from './home';
 
 describe('homeSections', () => {
-  it('keeps the approved section order (spec §3)', () => {
+  it('keeps the Concept A mockup order (spec §7)', () => {
     expect(homeSections.map((s) => s.id)).toEqual([
       'hero',
       'video',
       'two-ways',
-      'timeline',
       'gallery',
-      'stats',
       'see-it',
-      'brands',
       'about',
       'reviews',
-      'faq',
       'contact',
     ]);
   });

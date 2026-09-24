@@ -2,15 +2,16 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { SectionHeading } from './SectionHeading';
 
-describe('SectionHeading', () => {
-  it('renders a numbered label above the title', () => {
-    render(<SectionHeading id="t" number="02" label="Services" title="Floors, two ways" />);
-    expect(screen.getByText('02 · Services')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: 'Floors, two ways' })).toBeInTheDocument();
+describe('SectionHeading (mockup .shead)', () => {
+  it('renders a serif h2 with an optional side note', () => {
+    render(<SectionHeading id="t" title="Floors, two ways" lede="Short note" />);
+    const h2 = screen.getByRole('heading', { level: 2, name: 'Floors, two ways' });
+    expect(h2.className).toContain('font-display');
+    expect(screen.getByText('Short note')).toBeInTheDocument();
   });
 
-  it('omits the label row when no number is given', () => {
-    render(<SectionHeading id="t" title="Plain" />);
-    expect(screen.queryByText(/·/)).toBeNull();
+  it('renders no numbered label (the mockup has none)', () => {
+    render(<SectionHeading id="t" number="02" label="Services" title="Plain" />);
+    expect(screen.queryByText(/02/)).toBeNull();
   });
 });

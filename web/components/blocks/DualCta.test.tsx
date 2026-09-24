@@ -6,13 +6,14 @@ const primary = { label: 'Book', href: '/#contact' };
 const secondary = { label: 'Story', href: '#video' };
 
 describe('DualCta', () => {
-  it('uses a navy outline secondary on light backgrounds', () => {
+  it('renders the mockup pair: solid ink primary, paper ghost secondary', () => {
     render(<DualCta primary={primary} secondary={secondary} />);
-    expect(screen.getByRole('link', { name: 'Story' }).className).toContain('border-navy');
+    expect(screen.getByRole('link', { name: 'Book' }).className).toContain('bg-ink');
+    expect(screen.getByRole('link', { name: 'Story' }).className).toContain('border-line');
   });
-  it('uses a white outline secondary on dark backgrounds', () => {
+  it('uses a light outline secondary on dark backgrounds', () => {
     render(<DualCta primary={primary} secondary={secondary} tone="dark" />);
-    expect(screen.getByRole('link', { name: 'Story' }).className).toContain('border-white');
+    expect(screen.getByRole('link', { name: 'Story' }).className).toContain('border-bone');
   });
   it('can stretch both buttons full width on phones', () => {
     render(<DualCta primary={primary} secondary={secondary} fullWidthMobile />);

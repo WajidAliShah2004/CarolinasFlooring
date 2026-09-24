@@ -7,7 +7,7 @@ type Props = {
   primary: Cta;
   secondary?: Cta;
   className?: string;
-  /** 'dark' = on a navy background: the secondary becomes a white outline. */
+  /** 'dark' = on an ink surface: the secondary becomes a bone outline. */
   tone?: 'light' | 'dark';
   fullWidthMobile?: boolean;
 };

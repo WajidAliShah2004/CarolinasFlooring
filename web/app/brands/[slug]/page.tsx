@@ -27,12 +27,12 @@ export default async function BrandPage({ params }: Params) {
   if (!brand) notFound();
   return (
     <Container className="py-16 md:py-24">
-      <Link href="/#brands" className="text-sm font-semibold text-navy hover:underline">← All brands</Link>
-      <h1 className="mt-6 text-4xl font-semibold tracking-tight text-navy md:text-5xl">{brand.name}</h1>
-      <p className="mt-4 max-w-2xl text-lg text-foreground/80">
+      <Link href="/#brands" className="text-[13px] font-semibold uppercase tracking-[0.18em] text-tan-deep hover:underline">← All brands</Link>
+      <h1 className="mt-6 font-display text-[clamp(34px,4.5vw,56px)] font-semibold tracking-[-0.024em] text-ink">{brand.name}</h1>
+      <p className="mt-4 max-w-2xl text-lg text-stone">
         The full {brand.name} range and colours are coming to this page soon. In the meantime, David can bring samples to you.
       </p>
-      <DualCta className="mt-8" primary={{ label: 'Book a Consultation', href: site.bookingUrl }} />
+      <DualCta className="mt-8" primary={{ label: 'Book a consultation', href: site.bookingUrl }} />
     </Container>
   );
 }

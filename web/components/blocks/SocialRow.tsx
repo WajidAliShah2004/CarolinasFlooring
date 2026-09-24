@@ -16,10 +16,8 @@ export function SocialRow({ links, tone = 'light' }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              'inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border-2 px-4 text-sm font-semibold transition-colors',
-              tone === 'dark'
-                ? 'border-white/50 text-white hover:bg-white/10'
-                : 'border-navy text-navy hover:bg-navy hover:text-white',
+              'inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border px-4 text-[13.5px] font-medium transition-colors',
+              tone === 'dark' ? 'border-bone/40 text-bone hover:bg-bone/10' : 'border-ink text-ink hover:bg-ink hover:text-bone',
             )}
           >
             {platformLabels[platform]}{' '}
