@@ -15,17 +15,19 @@ describe('Gallery', () => {
     const { container } = render(<Gallery items={items} />);
     expect(container.querySelector('section')).toHaveAttribute('id', 'gallery');
     expect(screen.getAllByRole('figure')).toHaveLength(3);
+    expect(screen.getAllByRole('listitem')).toHaveLength(3);
     expect(screen.getByRole('img', { name: 'A photo' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Play video: Crew installing' })).toBeInTheDocument();
     expect(screen.getByRole('slider')).toBeInTheDocument();
     expect(screen.getByText('Pair caption')).toBeInTheDocument();
   });
 
-  it('gives the first tile a double-width bento slot on desktop', () => {
-    const { container } = render(<Gallery items={items} />);
-    const tiles = container.querySelectorAll('ul > li');
-    expect(tiles[0].className).toContain('md:col-span-2');
-    expect(tiles[1].className).not.toContain('md:col-span-2');
+  it('presents the work as a carousel with arrows, dots and autoplay controls', () => {
+    render(<Gallery items={items} />);
+    expect(screen.getByRole('region', { name: 'Project photos and videos' })).toHaveAttribute('aria-roledescription', 'carousel');
+    expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
+    expect(screen.getAllByRole('tab')).toHaveLength(3);
+    expect(screen.getByRole('button', { name: 'Pause autoplay' })).toBeInTheDocument();
   });
 
   it('loads the video only after the play button is clicked', async () => {

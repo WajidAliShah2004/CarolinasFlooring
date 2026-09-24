@@ -9,14 +9,48 @@ import { cn } from '@/lib/utils';
 const REDUCED = '(prefers-reduced-motion: reduce)';
 const INTERVAL_MS = 4000;
 
-type Props = { slides: Img[]; label: string; className?: string };
+type Props<T> = {
+  slides: T[];
+  label: string;
+  className?: string;
+  /** Renders one slide's content. Default: an `Img` card with a gradient caption. */
+  render?: (slide: T, index: number) => React.ReactNode;
+  keyOf?: (slide: T, index: number) => string;
+  /** Width/aspect classes for each slide `<li>`. */
+  slideClassName?: string;
+};
+
+const DEFAULT_SLIDE = 'aspect-[3/4] w-[72%] sm:w-[46%] md:w-[31%] lg:w-[23.5%] overflow-hidden rounded-xl bg-muted shadow-soft';
+
+function renderImg(slide: Img) {
+  return (
+    <>
+      <Image
+        src={slide.src}
+        alt={slide.alt}
+        fill
+        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 75vw"
+        className="object-cover transition-transform duration-700 group-hover/slide:scale-105"
+      />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-navy-deep/85 to-transparent" />
+      <p className="pointer-events-none absolute inset-x-0 bottom-0 p-4 text-sm font-semibold text-white">{slide.alt}</p>
+    </>
+  );
+}
 
 /**
- * Samples carousel — scroll-snap track with arrows, dots and safeguarded autoplay.
+ * Carousel — scroll-snap track with arrows, dots and safeguarded autoplay.
  * Autoplay pauses on hover / focus / touch / off-screen / the Pause button and never runs under reduced motion.
  * (Client-approved override of the base spec's "no self-moving carousels" — see modernization spec §6.)
  */
-export function Carousel({ slides, label, className }: Props) {
+export function Carousel<T = Img>({
+  slides,
+  label,
+  className,
+  render = renderImg as unknown as (slide: T, index: number) => React.ReactNode,
+  keyOf = (s, i) => ((s as { src?: string; id?: string }).id ?? (s as { src?: string }).src ?? String(i)),
+  slideClassName = DEFAULT_SLIDE,
+}: Props<T>) {
   const trackRef = useRef<HTMLUListElement>(null);
   const [index, setIndex] = useState(0);
   const [reduced, setReduced] = useState(false);
@@ -92,20 +126,12 @@ export function Carousel({ slides, label, className }: Props) {
       >
         {slides.map((s, i) => (
           <li
-            key={s.src}
+            key={keyOf(s, i)}
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${slides.length}`}
-            className="group/slide relative aspect-[3/4] w-[72%] shrink-0 snap-start overflow-hidden rounded-xl bg-muted shadow-soft sm:w-[46%] md:w-[31%] lg:w-[23.5%]"
+            className={cn('group/slide relative shrink-0 snap-start', slideClassName)}
           >
-            <Image
-              src={s.src}
-              alt={s.alt}
-              fill
-              sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 75vw"
-              className="object-cover transition-transform duration-700 group-hover/slide:scale-105"
-            />
-            <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-navy-deep/85 to-transparent" />
-            <p className="pointer-events-none absolute inset-x-0 bottom-0 p-4 text-sm font-semibold text-white">{s.alt}</p>
+            {render(s, i)}
           </li>
         ))}
       </ul>
@@ -133,7 +159,7 @@ export function Carousel({ slides, label, className }: Props) {
         <div role="tablist" aria-label="Slides" className="flex items-center gap-2">
           {slides.map((s, i) => (
             <button
-              key={s.src}
+              key={keyOf(s, i)}
               type="button"
               role="tab"
               aria-selected={i === index}
