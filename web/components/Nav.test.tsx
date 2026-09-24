@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { Nav } from './Nav';
@@ -12,6 +12,16 @@ describe('Nav', () => {
   it('has no showroom link', () => {
     render(<Nav />);
     expect(screen.queryByRole('link', { name: /showroom/i })).toBeNull();
+  });
+
+  it('turns navy after scrolling past 80px', () => {
+    render(<Nav />);
+    const header = screen.getByRole('banner');
+    expect(header.className).toContain('bg-white');
+    Object.defineProperty(window, 'scrollY', { value: 200, configurable: true });
+    fireEvent.scroll(window);
+    expect(header.className).toContain('bg-navy');
+    Object.defineProperty(window, 'scrollY', { value: 0, configurable: true });
   });
 
   it('toggles the mobile menu', async () => {

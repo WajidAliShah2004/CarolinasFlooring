@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { navLinks } from '@/content/copy';
 import { ctaPrimary } from '@/lib/cta';
 import { cn } from '@/lib/utils';
@@ -11,12 +11,32 @@ import { Container } from './layout/Container';
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // White at the top of the page; solid navy once scrolled past the first 80px.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur">
-      <Container className="flex h-16 items-center gap-4 md:h-18">
+    <header
+      className={cn(
+        'sticky top-0 z-50 border-b transition-colors',
+        scrolled ? 'border-navy bg-navy' : 'border-border bg-white/95 backdrop-blur',
+      )}
+    >
+      <Container className="flex h-14 items-center gap-4 md:h-18">
         <Link href="/" className="mr-auto leading-tight">
-          <span className="block text-lg font-bold text-navy">{site.businessName}</span>
-          <span className="hidden text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground sm:block">
+          <span className={cn('block text-lg font-bold', scrolled ? 'text-white' : 'text-navy')}>{site.businessName}</span>
+          <span
+            className={cn(
+              'hidden text-xs font-medium uppercase tracking-[0.2em] sm:block',
+              scrolled ? 'text-white/70' : 'text-muted-foreground',
+            )}
+          >
             {site.ownerName} · Since {site.startYear}
           </span>
         </Link>
@@ -24,7 +44,13 @@ export function Nav() {
           <ul className="flex gap-6">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="text-[0.95rem] font-medium text-foreground hover:text-navy">
+                <Link
+                  href={l.href}
+                  className={cn(
+                    'text-[0.95rem] font-medium',
+                    scrolled ? 'text-white/85 hover:text-white' : 'text-foreground hover:text-navy',
+                  )}
+                >
                   {l.label}
                 </Link>
               </li>
@@ -37,7 +63,7 @@ export function Nav() {
         </Link>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center text-navy md:hidden"
+          className={cn('inline-flex h-11 w-11 items-center justify-center md:hidden', scrolled ? 'text-white' : 'text-navy')}
           aria-label="Menu"
           aria-expanded={open}
           aria-controls="mobile-nav"
@@ -47,12 +73,12 @@ export function Nav() {
         </button>
       </Container>
       {open && (
-        <nav id="mobile-nav" aria-label="Mobile" className="border-t border-border md:hidden">
+        <nav id="mobile-nav" aria-label="Mobile" className="border-t border-white/15 bg-navy md:hidden">
           <Container>
             <ul className="py-2">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="block py-3 text-lg font-medium text-navy" onClick={() => setOpen(false)}>
+                  <Link href={l.href} className="block py-3 text-lg font-medium text-white" onClick={() => setOpen(false)}>
                     {l.label}
                   </Link>
                 </li>
