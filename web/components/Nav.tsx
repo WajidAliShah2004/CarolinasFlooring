@@ -7,7 +7,6 @@ import { navLinks } from '@/content/copy';
 import { ctaPrimary } from '@/lib/cta';
 import { cn } from '@/lib/utils';
 import { site } from '@/site.config';
-import { Container } from './layout/Container';
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -28,7 +27,8 @@ export function Nav() {
         scrolled ? 'border-navy bg-navy/85' : 'border-border bg-white/70',
       )}
     >
-      <Container className="flex h-14 items-center gap-4 md:h-18">
+      {/* Full-width bar: brand hard left, menu + CTA hard right, regardless of the content column. */}
+      <div className="flex h-14 items-center gap-4 px-4 sm:px-6 md:h-18 lg:px-10">
         {/* One line on md+ so the name shares a baseline with the nav links; stacked only on phones. */}
         <Link href="/" className="mr-auto flex flex-col leading-tight md:flex-row md:items-baseline md:gap-3">
           <span className={cn('text-lg font-bold', scrolled ? 'text-white' : 'text-navy')}>{site.businessName}</span>
@@ -72,10 +72,10 @@ export function Nav() {
         >
           {open ? <X aria-hidden /> : <Menu aria-hidden />}
         </button>
-      </Container>
+      </div>
       {open && (
         <nav id="mobile-nav" aria-label="Mobile" className="border-t border-white/15 bg-navy md:hidden">
-          <Container>
+          <div className="px-4 sm:px-6">
             <ul className="py-2">
               {navLinks.map((l) => (
                 <li key={l.href}>
@@ -85,7 +85,7 @@ export function Nav() {
                 </li>
               ))}
             </ul>
-          </Container>
+          </div>
         </nav>
       )}
     </header>
