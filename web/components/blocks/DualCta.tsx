@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ctaPrimary, ctaSecondary, ctaSecondaryDark } from '@/lib/cta';
+import { ctaPrimary, ctaSecondary, ctaSecondaryDark } from '@/lib/utils-cta';
 import { cn } from '@/lib/utils';
 
 type Cta = { label: string; href: string };
@@ -7,7 +7,7 @@ type Props = {
   primary: Cta;
   secondary?: Cta;
   className?: string;
-  /** 'dark' = on an ink surface: the secondary becomes a bone outline. */
+  /** 'dark' = on a navy surface: the secondary becomes a white outline. */
   tone?: 'light' | 'dark';
   fullWidthMobile?: boolean;
 };

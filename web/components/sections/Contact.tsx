@@ -1,4 +1,5 @@
 import { ConsultOptions } from '@/components/blocks/ConsultOptions';
+import { DualCta } from '@/components/blocks/DualCta';
 import { LeadForm } from '@/components/blocks/LeadForm';
 import { SocialRow } from '@/components/blocks/SocialRow';
 import { Container } from '@/components/layout/Container';
@@ -8,7 +9,7 @@ import { contactCopy } from '@/content/copy';
 import { mailtoHref, telHref } from '@/lib/contact';
 import { site } from '@/site.config';
 
-// S10–S14 — mockup "Start with a conversation": form left, hairline detail rows right. No address, hours or map.
+// S10–S14 — "Start with a conversation": form left, hairline detail rows right. No address, hours or map.
 export function Contact() {
   const details = [
     { label: 'Phone', value: site.phone, href: telHref(site.phone) },
@@ -35,7 +36,9 @@ export function Contact() {
               ))}
             </dl>
             <ConsultOptions />
-            <p className="font-display text-[19px] leading-snug text-ink">{contactCopy.savings}</p>
+            <p className="font-display text-[19px] leading-snug text-navy">{contactCopy.savings}</p>
+            {/* S14: booking must be reachable from the contact section as well as the hero and nav. */}
+            <DualCta primary={{ label: 'Book a consultation', href: site.bookingUrl }} secondary={{ label: `Call ${site.phone}`, href: telHref(site.phone) }} />
             <SocialRow links={site.social} />
           </Reveal>
         </div>

@@ -41,7 +41,26 @@ export const introVideo = {
   ],
 };
 
-// Mockup "Four floors, sold two ways" — editorial rows. Brand names are text only (no outbound links, docx D9).
+// Docx §7.4 — two parallel service paths, each with its own CTA. PLACEHOLDER: David is rewriting this.
+export const twoWays = {
+  title: 'Floors, two ways',
+  lede: "Buy the product on its own, or have David's technicians install it.",
+  note: 'Placeholder copy — David is rewriting this section.',
+  paths: [
+    {
+      title: 'Just the product',
+      body: 'Choose your flooring with David and buy it on its own. Ideal if you already have an installer.',
+      cta: 'Ask about a product',
+    },
+    {
+      title: 'Product + installation',
+      body: "David supplies the floor and his own technicians install it — one person answerable from start to finish.",
+      cta: 'Book a consultation',
+    },
+  ],
+};
+
+// Floor types from the Concept A mockup. Brand names are text only (no outbound links, docx D9).
 export const services = {
   title: 'Four floors, sold two ways',
   lede: "Buy the product on its own, or have David's technicians install it.",
@@ -62,7 +81,6 @@ export const gallery = {
 export const seeItFirst = {
   title: 'See it before you buy it',
   lede: 'Full-size displays, so you handle the actual product rather than a postage stamp — brought to your home, or at a meeting by appointment.',
-  onDisplay: 'On display',
   cta: 'Book a consultation',
   shelf: [
     { src: '/assets/photos/shaw-hardwood-0001.jpg', alt: 'Shaw · Floorté hardwood' },

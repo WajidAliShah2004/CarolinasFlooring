@@ -19,8 +19,8 @@ export function Reviews({ items = reviews }: { items?: Review[] }) {
           <div className="grid gap-[clamp(20px,3vw,44px)] md:grid-cols-3">
             {reviewsCopy.trust.map((t) => (
               <div key={t.title}>
-                <p aria-hidden className="mb-3 text-[14px] tracking-[0.18em] text-tan">★★★★★</p>
-                <h3 className="mb-2 font-display text-[20px] font-semibold tracking-[-0.015em] text-ink">{t.title}</h3>
+                <p aria-hidden className="mb-3 text-[14px] tracking-[0.18em] text-orange">★★★★★</p>
+                <h3 className="mb-2 font-display text-[20px] font-semibold tracking-[-0.015em] text-navy">{t.title}</h3>
                 <p className="text-[15px] text-stone">{t.body}</p>
               </div>
             ))}

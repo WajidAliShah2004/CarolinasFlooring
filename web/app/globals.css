@@ -25,18 +25,20 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  /* Concept A (01-warm-minimal.html) palette */
-  --color-bone: var(--bone);
-  --color-paper: var(--paper);
+  /* Docx palette (Design spec §5.2) on the Concept A layout */
+  --color-surface: var(--surface);
+  --color-navy: var(--brand-navy);
+  --color-navy-deep: var(--brand-navy-deep);
+  --color-orange: var(--brand-orange);
+  --color-orange-text: var(--brand-orange-text);
   --color-ink: var(--ink);
   --color-stone: var(--stone);
-  --color-tan: var(--tan);
-  --color-tan-deep: var(--tan-deep);
-  --color-line: var(--line);
-  --color-wood-1: var(--wood-1);
-  --color-wood-2: var(--wood-2);
-  --color-wood-3: var(--wood-3);
-  --color-wood-4: var(--wood-4);
+  --color-line: var(--rule);
+  /* Wood tones for the parquet illustration only (treated as imagery, like the photos) */
+  --color-wood-1: #C9A278;
+  --color-wood-2: #BB8F63;
+  --color-wood-3: #D6B593;
+  --color-wood-4: #A87848;
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
@@ -46,37 +48,34 @@
 :root {
   --radius: 0.25rem;
 
-  /* Concept A mockup palette — client override of the docx white/blue/orange system (spec §7). */
-  --bone: #FAF8F5;
-  --paper: #FFFFFF;
-  --ink: #1C1917;
-  --stone: #6B6259;
-  --tan: #B07D4E;
-  --tan-deep: #8A5F38;
-  --line: #E4DED5;
-  --wood-1: #C9A278;
-  --wood-2: #BB8F63;
-  --wood-3: #D6B593;
-  --wood-4: #A87848;
+  /* Design spec §5.2 — LOCKED: white + blue base, Syracuse Orange as highlight only. */
+  --brand-navy: #1F3A5F;        /* C1 PLACEHOLDER — replace with the exact blue from the back of David's business card */
+  --brand-navy-deep: #152A46;   /* derived from --brand-navy; update with it */
+  --brand-orange: #F76900;      /* Syracuse Orange, Pantone 165 C (C2) */
+  --brand-orange-text: #C74A00; /* orange at body size on white (§5.4) */
+  --ink: #2B2B2B;               /* body copy */
+  --stone: #5A6472;             /* secondary copy */
+  --rule: #D8DEE5;              /* dividers, borders, input outlines */
+  --surface: #F2F5F9;           /* pale blue-family band background */
 
-  --background: var(--bone);
+  --background: #FFFFFF;
   --foreground: var(--ink);
-  --card: var(--paper);
+  --card: #FFFFFF;
   --card-foreground: var(--ink);
-  --popover: var(--paper);
+  --popover: #FFFFFF;
   --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--bone);
-  --secondary: var(--paper);
-  --secondary-foreground: var(--ink);
-  --muted: #EFE7DC;
+  --primary: var(--brand-navy);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--surface);
+  --secondary-foreground: var(--brand-navy);
+  --muted: var(--surface);
   --muted-foreground: var(--stone);
-  --accent: #F3EEE6;
-  --accent-foreground: var(--ink);
-  --destructive: var(--tan-deep);
-  --border: var(--line);
-  --input: var(--line);
-  --ring: var(--tan);
+  --accent: var(--surface); /* shadcn hover surface — NOT the orange */
+  --accent-foreground: var(--brand-navy);
+  --destructive: var(--brand-orange-text);
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--brand-orange);
 }
 
 @layer base {
@@ -92,7 +91,7 @@
     line-height: 1.65;
   }
   :focus-visible {
-    outline: 2px solid var(--tan);
+    outline: 3px solid var(--brand-orange);
     outline-offset: 3px;
   }
   [id] {
@@ -112,7 +111,7 @@
 }
 
 @utility shadow-soft {
-  box-shadow: 0 30px 70px -40px rgb(28 25 23 / 0.55);
+  box-shadow: 0 30px 70px -40px rgb(21 42 70 / 0.55);
 }
 
 /* Reveal: never hide content when scripting is unavailable. */

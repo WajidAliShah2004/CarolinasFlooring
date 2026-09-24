@@ -5,15 +5,17 @@ import { DualCta } from './DualCta';
 const primary = { label: 'Book', href: '/#contact' };
 const secondary = { label: 'Story', href: '#video' };
 
-describe('DualCta', () => {
-  it('renders the mockup pair: solid ink primary, paper ghost secondary', () => {
+describe('DualCta (docx K2)', () => {
+  it('renders an orange-fill primary and a blue-outline secondary', () => {
     render(<DualCta primary={primary} secondary={secondary} />);
-    expect(screen.getByRole('link', { name: 'Book' }).className).toContain('bg-ink');
-    expect(screen.getByRole('link', { name: 'Story' }).className).toContain('border-line');
+    const book = screen.getByRole('link', { name: 'Book' });
+    expect(book.className).toContain('bg-orange');
+    expect(book.className).toContain('text-white');
+    expect(screen.getByRole('link', { name: 'Story' }).className).toContain('border-navy');
   });
-  it('uses a light outline secondary on dark backgrounds', () => {
+  it('uses a white outline secondary on navy surfaces', () => {
     render(<DualCta primary={primary} secondary={secondary} tone="dark" />);
-    expect(screen.getByRole('link', { name: 'Story' }).className).toContain('border-bone');
+    expect(screen.getByRole('link', { name: 'Story' }).className).toContain('border-white');
   });
   it('can stretch both buttons full width on phones', () => {
     render(<DualCta primary={primary} secondary={secondary} fullWidthMobile />);

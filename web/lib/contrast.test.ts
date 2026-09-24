@@ -9,36 +9,42 @@ const token = (name: string) => {
   if (!m) throw new Error(`token --${name} not found`);
   return m[1];
 };
+const WHITE = '#FFFFFF';
 
 describe('contrastRatio', () => {
   it('matches the WCAG reference values', () => {
-    expect(contrastRatio('#000000', '#FFFFFF')).toBeCloseTo(21, 5);
-    expect(contrastRatio('#FFFFFF', '#FFFFFF')).toBeCloseTo(1, 5);
+    expect(contrastRatio('#000000', WHITE)).toBeCloseTo(21, 5);
+    expect(contrastRatio(WHITE, WHITE)).toBeCloseTo(1, 5);
   });
 });
 
-describe('Concept A palette pairings (spec §7) — re-check whenever tokens change', () => {
-  const bone = token('bone');
-  const paper = token('paper');
+describe('docx palette pairings (Design spec §5.4) — re-check whenever the C1 blue changes', () => {
+  const navy = token('brand-navy');
+  const navyDeep = token('brand-navy-deep');
+  const orange = token('brand-orange');
+  const orangeText = token('brand-orange-text');
   const ink = token('ink');
   const stone = token('stone');
-  const tan = token('tan');
-  const tanDeep = token('tan-deep');
+  const surface = token('surface');
 
-  it('body text (ink, stone) on bone and paper is at least 4.5:1', () => {
-    for (const bg of [bone, paper]) {
+  it('body copy on white and the pale surface is at least 4.5:1', () => {
+    for (const bg of [WHITE, surface]) {
       expect(contrastRatio(ink, bg)).toBeGreaterThanOrEqual(4.5);
       expect(contrastRatio(stone, bg)).toBeGreaterThanOrEqual(4.5);
+      expect(contrastRatio(navy, bg)).toBeGreaterThanOrEqual(4.5);
     }
   });
-  it('tan-deep (accent text, italic phrase) on bone and paper is at least 4.5:1', () => {
-    expect(contrastRatio(tanDeep, bone)).toBeGreaterThanOrEqual(4.5);
-    expect(contrastRatio(tanDeep, paper)).toBeGreaterThanOrEqual(4.5);
+  it('text-safe orange on white is at least 4.5:1', () => {
+    expect(contrastRatio(orangeText, WHITE)).toBeGreaterThanOrEqual(4.5);
   });
-  it('tan (stars, rules — decorative or large only) on paper is at least 3:1', () => {
-    expect(contrastRatio(tan, paper)).toBeGreaterThanOrEqual(3);
+  it('bright orange is used only at large size / as UI: at least 3:1 on white and on navy', () => {
+    expect(contrastRatio(orange, WHITE)).toBeGreaterThanOrEqual(3);
+    expect(contrastRatio(orange, navy)).toBeGreaterThanOrEqual(3);
+    expect(contrastRatio(orange, navyDeep)).toBeGreaterThanOrEqual(3);
   });
-  it('bone text on ink surfaces is at least 4.5:1', () => {
-    expect(contrastRatio(bone, ink)).toBeGreaterThanOrEqual(4.5);
+  it('white text on orange buttons (large text) and on navy is readable', () => {
+    expect(contrastRatio(WHITE, orange)).toBeGreaterThanOrEqual(3);
+    expect(contrastRatio(WHITE, navy)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(WHITE, navyDeep)).toBeGreaterThanOrEqual(4.5);
   });
 });

@@ -12,15 +12,22 @@ describe('Hero', () => {
     expect(h1.querySelector('em')).toHaveTextContent('one person');
   });
 
-  it('renders both CTAs together, primary first, in the mockup styles', () => {
+  it('renders both CTAs together: orange primary, blue-outline secondary (docx §7.2)', () => {
     render(<Hero />);
     const links = screen.getAllByRole('link');
     expect(links[0]).toHaveTextContent('Book a consultation');
     expect(links[0]).toHaveAttribute('href', '/#contact');
-    expect(links[0].className).toContain('bg-ink');
+    expect(links[0].className).toContain('bg-orange');
     expect(links[1]).toHaveTextContent("Watch David's story");
     expect(links[1]).toHaveAttribute('href', '#video');
-    expect(links[1].className).toContain('border-line');
+    expect(links[1].className).toContain('border-navy');
+  });
+
+  it('highlights the headline phrase in orange at large size only', () => {
+    render(<Hero />);
+    const em = screen.getByRole('heading', { level: 1 }).querySelector('em')!;
+    expect(em.className).toContain('text-orange');
+    expect(em.className).not.toContain('text-orange-text');
   });
 
   it('shows a data-derived trust strip', () => {

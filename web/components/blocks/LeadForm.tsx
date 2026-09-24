@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { contactCopy } from '@/content/copy';
 import { leadFields } from '@/content/leadForm';
 import type { LeadField } from '@/content/types';
-import { ctaPrimary } from '@/lib/cta';
+import { ctaPrimary } from '@/lib/utils-cta';
 import { submitLead, type LeadResult } from '@/lib/submitLead';
 import { validateLead, type LeadErrors } from '@/lib/validateLead';
 
@@ -37,7 +37,7 @@ export function LeadForm({ fields = leadFields, submit = submitLead }: { fields?
   if (status === 'sent') {
     return (
       <div role="status" className="rounded-md border border-border bg-secondary p-8">
-        <p className="text-xl font-semibold text-ink">{contactCopy.success}</p>
+        <p className="text-xl font-semibold text-navy">{contactCopy.success}</p>
       </div>
     );
   }
@@ -69,7 +69,7 @@ export function LeadForm({ fields = leadFields, submit = submitLead }: { fields?
               <Input {...common} type={f.kind} inputMode={f.kind === 'tel' ? 'tel' : undefined} className="h-12 text-base md:text-lg" />
             )}
             {error && (
-              <p id={`${id}-error`} className="mt-1.5 text-sm font-medium text-tan-deep">{error}</p>
+              <p id={`${id}-error`} className="mt-1.5 text-sm font-medium text-orange-text">{error}</p>
             )}
           </div>
         );
@@ -79,7 +79,7 @@ export function LeadForm({ fields = leadFields, submit = submitLead }: { fields?
         <input id="lead-company" name="company" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
       </div>
       {status === 'error' && (
-        <p role="alert" className="mb-4 font-medium text-tan-deep">{contactCopy.error}</p>
+        <p role="alert" className="mb-4 font-medium text-orange-text">{contactCopy.error}</p>
       )}
       <button type="submit" disabled={status === 'sending'} className={ctaPrimary}>
         {status === 'sending' ? contactCopy.sending : contactCopy.submit}

@@ -9,7 +9,7 @@ import { site } from '@/site.config';
 // S2 — mockup "Meet David": paper band, player left, italic serif quote right. Directly after the hero.
 export function IntroVideo() {
   return (
-    <section id="video" aria-labelledby="video-title" className="border-y border-line bg-paper py-16 md:py-[clamp(64px,8vw,112px)]">
+    <section id="video" aria-labelledby="video-title" className="border-y border-line bg-surface py-16 md:py-[clamp(64px,8vw,112px)]">
       <Container>
         <Reveal>
           <SectionHeading id="video-title" title={introVideo.title} lede={introVideo.lede} />
@@ -26,7 +26,7 @@ export function IntroVideo() {
             />
           </Reveal>
           <Reveal delay={120}>
-            <blockquote className="max-w-[30ch] font-display text-[clamp(19px,2.2vw,26px)] italic leading-[1.45] tracking-[-0.015em] text-ink">
+            <blockquote className="max-w-[30ch] font-display text-[clamp(19px,2.2vw,26px)] italic leading-[1.45] tracking-[-0.015em] text-navy">
               {introVideo.quote(yearsOfExperience())}
               <cite className="mt-4.5 block font-sans text-[12px] font-medium not-italic uppercase tracking-[0.18em] text-stone">
                 {site.ownerName}, owner

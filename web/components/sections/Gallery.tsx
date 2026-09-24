@@ -41,7 +41,7 @@ export function Gallery({ items = galleryItems }: { items?: GalleryItem[] }) {
                 delay={(i % 3) * 60}
                 className={cn('col-span-12', six ? 'sm:col-span-6' : 'sm:col-span-6 md:col-span-4')}
               >
-                <figure className="group relative overflow-hidden rounded-[4px] border border-line bg-[#EFE7DC]">
+                <figure className="group relative overflow-hidden rounded-[4px] border border-line bg-surface">
                   <div className={cn('relative [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.045]', six ? 'aspect-[16/10]' : 'aspect-[4/3]')}>
                     <Media item={item} />
                   </div>

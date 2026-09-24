@@ -21,12 +21,12 @@ export function SectionHeading({ id, title, lede, tone = 'light', size = 'defaul
         className={cn(
           'font-display font-semibold leading-[1.12] tracking-[-0.024em]',
           size === 'feature' ? 'text-[clamp(30px,3.8vw,46px)]' : 'text-[clamp(27px,3.4vw,42px)]',
-          dark ? 'text-bone' : 'text-ink',
+          dark ? 'text-white' : 'text-navy',
         )}
       >
         {title}
       </h2>
-      {lede && <p className={cn('max-w-[34ch] text-[15px] md:ml-auto', dark ? 'text-bone/75' : 'text-stone')}>{lede}</p>}
+      {lede && <p className={cn('max-w-[34ch] text-[15px] md:ml-auto', dark ? 'text-white/75' : 'text-stone')}>{lede}</p>}
     </div>
   );
 }

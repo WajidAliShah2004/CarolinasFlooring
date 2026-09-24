@@ -35,7 +35,7 @@ export function VideoPlayer({ src, poster, title, subtitle, duration, chapters =
 
   return (
     <div>
-      <div className="relative aspect-video overflow-hidden rounded-[5px] bg-[#26211D] shadow-soft">
+      <div className="relative aspect-video overflow-hidden rounded-[5px] bg-navy-deep shadow-soft">
         <video
           ref={videoRef}
           className="h-full w-full object-cover"
@@ -50,18 +50,18 @@ export function VideoPlayer({ src, poster, title, subtitle, duration, chapters =
 
         {!playing && (
           <>
-            <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/15 to-transparent" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-navy-deep/15 to-transparent" />
             <button type="button" onClick={() => start()} aria-label={`Play video: ${title}`} className="group absolute inset-0 flex items-center justify-center">
-              <span className="flex h-[72px] w-[72px] items-center justify-center rounded-full border border-bone/80 bg-bone/10 text-bone backdrop-blur transition-colors group-hover:bg-bone group-hover:text-ink">
+              <span className="flex h-[72px] w-[72px] items-center justify-center rounded-full border border-white/80 bg-white/10 text-white backdrop-blur transition-colors group-hover:bg-white group-hover:text-navy">
                 <Play aria-hidden className="ml-1 h-8 w-8 fill-current" />
               </span>
             </button>
             <div className="pointer-events-none absolute right-4 bottom-4 left-4 flex items-end justify-between gap-4 sm:right-6 sm:bottom-6 sm:left-6">
-              <div className="text-bone">
+              <div className="text-white">
                 <p className="font-display text-[19px] font-semibold leading-tight">{title}</p>
-                <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-bone/75">{subtitle}</p>
+                <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-white/75">{subtitle}</p>
               </div>
-              {duration && <span className="rounded-full border border-bone/40 px-3 py-1 text-[11px] font-semibold text-bone/90">{duration}</span>}
+              {duration && <span className="rounded-full border border-white/40 px-3 py-1 text-[11px] font-semibold text-white/90">{duration}</span>}
             </div>
           </>
         )}
@@ -79,7 +79,7 @@ export function VideoPlayer({ src, poster, title, subtitle, duration, chapters =
                 }}
                 className={cn(
                   'rounded-full border px-4 py-1.5 text-[13px] font-medium transition-colors',
-                  active === i ? 'border-ink bg-ink text-bone' : 'border-line text-stone hover:border-ink hover:text-ink',
+                  active === i ? 'border-navy bg-navy text-white' : 'border-line text-stone hover:border-navy hover:text-navy',
                 )}
               >
                 {c.label}
