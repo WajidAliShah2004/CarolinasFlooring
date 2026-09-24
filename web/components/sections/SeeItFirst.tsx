@@ -13,7 +13,7 @@ export function SeeItFirst() {
         <SectionHeading id="see-it-title" title={seeItFirst.title} lede={seeItFirst.lede} size="feature" />
         <ul className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4" aria-label="Sample displays">
           {seeItFirst.shelf.map((img) => (
-            <li key={img.src} className="relative aspect-[3/4] w-56 shrink-0 snap-start overflow-hidden rounded-md bg-muted md:w-64">
+            <li key={img.src} className="relative aspect-[3/4] w-[70%] shrink-0 snap-start overflow-hidden rounded-md bg-muted sm:w-56 md:w-64">
               <Image src={img.src} alt={img.alt} fill sizes="256px" className="object-cover" />
             </li>
           ))}

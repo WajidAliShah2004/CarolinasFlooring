@@ -5,10 +5,11 @@ import { introVideo } from '@/content/copy';
 // S2. Directly after the hero, before all other content. With no video file, the poster alone shows.
 export function IntroVideo() {
   return (
-    <section id="video" aria-labelledby="video-title" className="bg-navy-deep py-16 md:py-24">
+    <section id="video" aria-labelledby="video-title" className="bg-navy py-10 md:py-24">
       <Container>
         <SectionHeading id="video-title" title={introVideo.title} lede={introVideo.lede} tone="dark" />
-        <div className="relative aspect-video overflow-hidden rounded-md bg-navy">
+        {/* Edge-to-edge on phones: cancel the container's 16px side padding. */}
+        <div className="relative -mx-4 aspect-video overflow-hidden bg-navy-deep sm:mx-0 sm:rounded-md">
           <video className="h-full w-full object-cover" controls preload="none" playsInline poster={introVideo.poster}>
             <source src={introVideo.src} type="video/mp4" />
           </video>

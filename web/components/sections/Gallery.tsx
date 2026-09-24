@@ -20,7 +20,7 @@ function Media({ item }: { item: GalleryItem }) {
 // S4 / K5. One grid, one enforced ratio, every media type.
 export function Gallery({ items = galleryItems }: { items?: GalleryItem[] }) {
   return (
-    <section id="gallery" aria-labelledby="gallery-title" className="py-16 md:py-24">
+    <section id="gallery" aria-labelledby="gallery-title" className="border-t border-border py-16 md:py-24">
       <Container>
         <SectionHeading id="gallery-title" title="Recent work" lede="Real jobs by David and his technicians." />
         <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
@@ -30,7 +30,7 @@ export function Gallery({ items = galleryItems }: { items?: GalleryItem[] }) {
                 <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-muted">
                   <Media item={item} />
                 </div>
-                <figcaption className="mt-2 text-sm text-foreground/80">{item.caption}</figcaption>
+                <figcaption className="mt-2 text-xs text-foreground/80 sm:text-sm">{item.caption}</figcaption>
               </figure>
             </li>
           ))}

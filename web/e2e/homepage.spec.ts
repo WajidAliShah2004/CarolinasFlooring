@@ -71,6 +71,12 @@ test.describe('homepage', () => {
     await expect(page.getByRole('heading', { level: 1, name: 'Shaw' })).toBeVisible();
   });
 
+  test('header turns navy after scrolling', async ({ page }) => {
+    const header = page.getByRole('banner');
+    await page.evaluate(() => window.scrollTo(0, 1200));
+    await expect(header).toHaveCSS('background-color', 'rgb(31, 58, 95)');
+  });
+
   test('no horizontal scroll', async ({ page }) => {
     const [scrollW, clientW] = await page.evaluate(() => [
       document.documentElement.scrollWidth,
