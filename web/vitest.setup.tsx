@@ -3,8 +3,16 @@ import { cleanup } from '@testing-library/react';
 import React from 'react';
 import { afterEach, vi } from 'vitest';
 
+import { installIntersectionObserverMock, installMatchMediaMock, setReducedMotion } from './test/intersection-observer';
+
+installIntersectionObserverMock();
+installMatchMediaMock();
+
 // Testing Library only auto-cleans when Vitest globals are enabled; do it explicitly.
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  setReducedMotion(false);
+});
 
 // next/image needs the Next runtime; render a plain <img> in unit tests.
 vi.mock('next/image', () => ({

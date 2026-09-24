@@ -103,3 +103,11 @@
 @utility shadow-soft {
   box-shadow: 0 1px 3px rgb(21 42 70 / 0.08), 0 10px 28px -14px rgb(21 42 70 / 0.22);
 }
+
+/* Reveal: never hide content when scripting is unavailable. */
+@media (scripting: none) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
